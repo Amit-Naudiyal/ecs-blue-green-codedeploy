@@ -1,0 +1,16 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:728135289732:task-definition/nginx-fargate:1"
+        LoadBalancerInfo:
+          ContainerName: "nginx"
+          ContainerPort: 80
+# Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: ["subnet-d288c2b7","subnet-7f1aea37"]
+            SecurityGroups: ["sg-0dea368b5bc660e1d"]
+            AssignPublicIp: "ENABLED"
